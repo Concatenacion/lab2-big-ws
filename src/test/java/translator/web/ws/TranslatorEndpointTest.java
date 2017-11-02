@@ -57,14 +57,15 @@ public class TranslatorEndpointTest {
 	@Test
 	public void testSendAndReceiveWithLanguageDetection() {
 		GetTranslationWithLanguageDetectionRequest request = new GetTranslationWithLanguageDetectionRequest();
-		request.setLangTo(Language.ENGLISH.asStr());
-		request.setText("Hola mundo");
+		request.setLangFrom("es");
+		request.setLangTo("az");
+		request.setText("En un lugar de la Mancha, de cuyo nombre no quiero acordarme...");
 		Object response = new WebServiceTemplate(marshaller).marshalSendAndReceive("http://localhost:"
 				+ port + "/ws", request);
 		assertNotNull(response);
-		assertThat(response, instanceOf(GetTranslationWithLanguageDetectionResponse.class));
-		GetTranslationWithLanguageDetectionResponse translation = (GetTranslationWithLanguageDetectionResponse) response;
-		assertThat(translation.getTranslation(), is("Hello world"));
+		assertThat(response, instanceOf(GetTranslationResponse.class));
+		GetTranslationResponse translation = (GetTranslationResponse) response;
+assertThat(translation.getTranslation(), is("Bir yerdə Ləkə, onun adı mən istəmirəm ki, məni yada..."));
 	}
 
 }
