@@ -53,3 +53,4 @@ public class TranslatorEndpointTest {
 		GetTranslationResponse translation = (GetTranslationResponse) response;
 		assertThat(translation.getTranslation(), is("Bir yerdə Ləkə, onun adı mən istəmirəm ki, məni yada..."));
 	}
+}
